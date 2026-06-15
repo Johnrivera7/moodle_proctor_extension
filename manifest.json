@@ -10,7 +10,10 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*/mod/quiz/attempt.php*"],
+      "matches": [
+        "*://*/mod/quiz/attempt.php*",
+        "*://*/local/moodle_proctor/extension_install.php*"
+      ],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
