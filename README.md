@@ -2,54 +2,37 @@
 
 [![Chrome](https://img.shields.io/badge/Chrome-MV3-4285F4?style=flat-square&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/mv3/)
 [![Edge](https://img.shields.io/badge/Edge-Compatible-0078D7?style=flat-square&logo=microsoftedge&logoColor=white)](https://www.microsoft.com/edge)
+[![Moodle](https://img.shields.io/badge/Moodle-5.2%2B-orange?style=flat-square&logo=moodle)](https://moodle.org)
+[![Branch](https://img.shields.io/badge/Branch-MOODLE__52-green?style=flat-square)](https://github.com/Johnrivera7/moodle_proctor_extension/tree/MOODLE_52)
+[![Version](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square)](manifest.json)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue?style=flat-square)](LICENSE)
-[![Moodle](https://img.shields.io/badge/Integrates-quizaccess__moodle__proctor-orange?style=flat-square&logo=moodle)](https://github.com/Johnrivera7/moodle_quizaccess_proctor)
-[![Version](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square)](manifest.json)
 
-Extensión **Chromium MV3** para browser lock durante exámenes supervisados. Complementa el JavaScript del plugin Moodle.
+Extensión **Chromium MV3** para browser lock. Compatible con suite **MOODLE_52** (Moodle 5.2+ / PHP 8.5+).
 
 | | |
 |---|---|
 | **Repositorio** | https://github.com/Johnrivera7/moodle_proctor_extension |
-| **Autor** | [John Rivera](https://github.com/Johnrivera7) |
-| **Tipo** | Extensión navegador (no plugin Moodle) |
+| **Rama** | **`MOODLE_52`** |
+| **Versión** | 1.1.0 |
 
-> 🌐 **Separado a propósito** — se instala en el navegador del estudiante, no en Moodle.
-
----
-
-## Requisitos
-
-| Requisito | Detalle |
-|-----------|---------|
-| Navegador | Chrome, Edge, Brave (Chromium) |
-| Moodle | `quizaccess_moodle_proctor` activo en el quiz |
-| HTTPS | Recomendado |
+> Moodle 4.5: rama [`MOODLE_45`](https://github.com/Johnrivera7/moodle_proctor_extension/tree/MOODLE_45)
 
 ---
 
-## Instalación
+## Instalación fácil (estudiantes)
 
-### Modo desarrollador / institucional
+1. Publicar como **no listada** en Chrome Web Store → [INSTALL_CHROME.md](INSTALL_CHROME.md)
+2. Admin pega URL en **Moodle Proctor → Chrome Web Store URL**
+3. Estudiante: bloque del curso → **Instalar extensión** → **Añadir a Chrome**
 
-1. Abrir `chrome://extensions`
-2. Activar **Modo de desarrollador**
-3. **Cargar descomprimida** → seleccionar esta carpeta
+---
 
-### Empaquetar para distribución interna
+## Instalación manual
 
 ```bash
-zip -r moodle_proctor_extension.zip manifest.json background.js content.js icons/
+git clone -b MOODLE_52 https://github.com/Johnrivera7/moodle_proctor_extension.git
+# chrome://extensions → Modo desarrollador → Cargar descomprimida
 ```
-
-Distribuir el ZIP por política IT de la institución.
-
----
-
-## Configuración Moodle
-
-1. **Administración → Moodle Proctor → Require browser extension** = Sí
-2. En el cuestionario → **Require browser extension** = Sí
 
 ---
 
@@ -57,41 +40,21 @@ Distribuir el ZIP por política IT de la institución.
 
 | Función | Descripción |
 |---------|-------------|
-| 🔒 Browser lock | Impide cambiar de pestaña activa |
-| 🚫 Nuevas pestañas | Cierra pestañas abiertas durante examen |
-| ⌨️ Atajos | Bloquea Ctrl+C, Ctrl+V, Ctrl+P, etc. |
-| 📋 Copiar/pegar | Deshabilitado en página del quiz |
-| 📡 Ping | Responde a señales del AMD de Moodle |
+| 🔒 Browser lock | Bloquea cambio de pestaña |
+| ⌨️ Atajos | Ctrl+C/V/P bloqueados |
+| 📡 Detección | Página install + quiz attempt |
 
 ---
 
-## Páginas afectadas
-
-Solo se activa en:
-
-```
-*/mod/quiz/attempt.php*
-```
-
----
-
-## Suite Moodle Proctor
+## Suite MOODLE_52
 
 | Repo | Rol |
 |------|-----|
-| [moodle_proctor](https://github.com/Johnrivera7/moodle_proctor) | Núcleo |
-| [moodle_quizaccess_proctor](https://github.com/Johnrivera7/moodle_quizaccess_proctor) | Detecta extensión |
-| [moodle_block_proctor](https://github.com/Johnrivera7/moodle_block_proctor) | Aviso en curso |
-| [moodle_proctor_python](https://github.com/Johnrivera7/moodle_proctor_python) | Análisis facial |
-| **moodle_proctor_extension** | ← Esta extensión |
-
----
-
-## Limitaciones
-
-- No reemplaza **Safe Exam Browser (SEB)**
-- El estudiante puede desinstalar la extensión — combinar con políticas institucionales
-- Firefox no soportado (solo Chromium MV3)
+| [moodle_proctor](https://github.com/Johnrivera7/moodle_proctor/tree/MOODLE_52) | Config + página install |
+| [moodle_quizaccess_proctor](https://github.com/Johnrivera7/moodle_quizaccess_proctor/tree/MOODLE_52) | Integración quiz |
+| [moodle_block_proctor](https://github.com/Johnrivera7/moodle_block_proctor/tree/MOODLE_52) | Enlace install |
+| [moodle_proctor_python](https://github.com/Johnrivera7/moodle_proctor_python/tree/MOODLE_52) | Python |
+| **moodle_proctor_extension** | ← Extensión |
 
 ---
 

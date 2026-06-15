@@ -36,6 +36,9 @@
         document.dispatchEvent(new CustomEvent('moodle-proctor-extension-ok'));
     });
 
+    // Announce presence on any matched quiz page (and when pinged from install page if content script loaded).
+    document.dispatchEvent(new CustomEvent('moodle-proctor-extension-ok'));
+
     window.addEventListener('beforeunload', () => {
         chrome.runtime.sendMessage({ type: 'PROCTOR_LOCK_STOP' });
     });
