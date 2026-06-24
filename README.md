@@ -7,7 +7,7 @@
 [![Version](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square)](manifest.json)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue?style=flat-square)](LICENSE)
 
-Extensión **Chromium MV3** para browser lock durante exámenes. **Opcional** — desde v1.4.0 la suite funciona en todos los navegadores sin extensión (verificación de identidad y proctoring básico en el navegador).
+Extensión **Chromium MV3** para browser lock durante exámenes. **Opcional** — desde v1.4.1 la suite funciona en todos los navegadores sin extensión.
 
 | | |
 |---|---|
@@ -23,7 +23,7 @@ Extensión **Chromium MV3** para browser lock durante exámenes. **Opcional** �
 
 ## Estado actual
 
-| Función | Sin extensión (v1.4.0) | Con extensión |
+| Función | Sin extensión (v1.4.1) | Con extensión |
 |---------|------------------------|---------------|
 | Verificación cédula + rostro | ✅ Navegador | — |
 | Webcam durante quiz | ✅ | ✅ |
