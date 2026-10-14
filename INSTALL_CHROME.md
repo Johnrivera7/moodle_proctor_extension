@@ -85,11 +85,16 @@ Política **ExtensionInstallForcelist** con el ID de la extensión.
 
 ## 3 · Instalación manual (desarrollo / sin tienda)
 
-1. Descargar ZIP desde GitHub o Moodle  
-2. Descomprimir  
-3. `chrome://extensions` → Modo desarrollador → **Cargar descomprimida**
+```bash
+git clone -b MOODLE_53 https://github.com/Johnrivera7/moodle_proctor_extension.git
+```
 
-⚠️ Chrome muestra aviso “desactivada en modo desarrollador” en perfiles gestionados.
+1. Abrir `chrome://extensions` (Edge: `edge://extensions`).
+2. Activar **Modo de desarrollador**.
+3. **Cargar descomprimida** y elegir la carpeta que contiene `manifest.json` (versión 1.2.0).
+4. Si la carpeta ya estaba cargada, pulsar **Actualizar** en esa tarjeta.
+
+Chrome muestra el aviso “desactivada en modo desarrollador” en perfiles gestionados. Para estudiantes, use la Chrome Web Store no listada.
 
 ---
 

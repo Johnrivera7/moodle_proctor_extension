@@ -36,6 +36,12 @@
         document.dispatchEvent(new CustomEvent('moodle-proctor-extension-ok'));
     });
 
+    chrome.runtime.onMessage.addListener((message) => {
+        if (message.type === 'PROCTOR_INCIDENT' && message.incident) {
+            notifyIncident(message.incident);
+        }
+    });
+
     // Announce presence on any matched quiz page (and when pinged from install page if content script loaded).
     document.dispatchEvent(new CustomEvent('moodle-proctor-extension-ok'));
 

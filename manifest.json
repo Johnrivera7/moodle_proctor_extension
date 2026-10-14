@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Moodle Proctor Extension",
-  "version": "1.1.0",
-  "description": "Browser lock and connectivity for Moodle Proctor proctored quizzes.",
-  "permissions": ["storage", "tabs"],
+  "version": "1.2.0",
+  "description": "Browser lock, extra-display detection and AI-tab blocking for Moodle Proctor.",
+  "permissions": ["storage", "tabs", "system.display"],
   "host_permissions": ["*://*/*"],
   "background": {
     "service_worker": "background.js"
