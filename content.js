@@ -1,6 +1,20 @@
 'use strict';
 
 (function() {
+    // Presence on every matched Moodle page, so the course block and install page can tell
+    // the extension is installed. No configuration is needed: it works on any Moodle site.
+    const version = chrome.runtime.getManifest().version;
+    document.documentElement.dataset.moodleProctorExtension = version;
+    document.addEventListener('moodle-proctor-ping', () => {
+        document.dispatchEvent(new CustomEvent('moodle-proctor-extension-ok', { detail: { version } }));
+    });
+    document.dispatchEvent(new CustomEvent('moodle-proctor-extension-ok', { detail: { version } }));
+
+    // Locking only happens inside a quiz attempt.
+    if (location.pathname.indexOf('/mod/quiz/attempt.php') === -1) {
+        return;
+    }
+
     const BLOCKED_KEYS = ['c', 'v', 'x', 'a', 'p', 's', 'u'];
 
     function notifyIncident(type) {
@@ -32,18 +46,11 @@
 
     chrome.runtime.sendMessage({ type: 'PROCTOR_LOCK_START' });
 
-    document.addEventListener('moodle-proctor-ping', () => {
-        document.dispatchEvent(new CustomEvent('moodle-proctor-extension-ok'));
-    });
-
     chrome.runtime.onMessage.addListener((message) => {
         if (message.type === 'PROCTOR_INCIDENT' && message.incident) {
             notifyIncident(message.incident);
         }
     });
-
-    // Announce presence on any matched quiz page (and when pinged from install page if content script loaded).
-    document.dispatchEvent(new CustomEvent('moodle-proctor-extension-ok'));
 
     window.addEventListener('beforeunload', () => {
         chrome.runtime.sendMessage({ type: 'PROCTOR_LOCK_STOP' });

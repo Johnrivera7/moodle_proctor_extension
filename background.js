@@ -1,6 +1,7 @@
 'use strict';
 
 let examTabId = null;
+let examWindowId = null;
 let lockActive = false;
 
 const AI_HOSTS = [
@@ -46,6 +47,7 @@ function reportDisplays() {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'PROCTOR_LOCK_START') {
         examTabId = sender.tab ? sender.tab.id : null;
+        examWindowId = sender.tab ? sender.tab.windowId : null;
         lockActive = true;
         reportDisplays();
         sendResponse({ok: true});
@@ -53,6 +55,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'PROCTOR_LOCK_STOP') {
         lockActive = false;
         examTabId = null;
+        examWindowId = null;
         sendResponse({ok: true});
     }
     return true;
@@ -89,3 +92,16 @@ if (chrome.system && chrome.system.display && chrome.system.display.onDisplayCha
         reportDisplays();
     });
 }
+
+// Focus left Chrome (another browser or app) or moved to another Chrome window.
+chrome.windows.onFocusChanged.addListener((windowId) => {
+    if (!lockActive || examWindowId === null || windowId === examWindowId) {
+        return;
+    }
+    if (windowId === chrome.windows.WINDOW_ID_NONE) {
+        notifyExam('browser_left');
+        return;
+    }
+    chrome.windows.update(examWindowId, {focused: true}).catch(() => {});
+    notifyExam('tab_hidden');
+});
