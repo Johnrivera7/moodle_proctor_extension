@@ -14,7 +14,7 @@ Extensión **Chromium MV3** (versión **1.3.0**) para reforzar el bloqueo del na
 | **Autor** | [John Rivera](https://github.com/Johnrivera7) |
 | **Contacto** | [johnriveragonzalez7@gmail.com](mailto:johnriveragonzalez7@gmail.com) |
 | **Repositorio** | https://github.com/Johnrivera7/moodle_proctor_extension |
-| **Rama** | **`MOODLE_53`** |
+| **Rama** | **`MOODLE_53`** (por defecto) |
 | **Versión** | 1.3.0 |
 | **Política de privacidad** | https://github.com/Johnrivera7/moodle-proctor-extension-privacy |
 
